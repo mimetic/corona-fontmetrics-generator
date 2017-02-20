@@ -1,4 +1,4 @@
-# fontmetrics
+# corona-fontmetrics-generator
 A website to create font metrics for the Corona textrender code. The PHP code uses ImageMagick to read the headers of TTF files and extract the font metrics.
 The metrics are written into a format that that the font metrics code in corona-textrender can read.
 
