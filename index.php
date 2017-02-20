@@ -81,7 +81,11 @@ foreach (glob("fonts/*") as $fontfilename) {
 	
 	$draw->setFontSize($fontsize);
 	
-	$draw->setFillColor('#ff0000');
+//	$draw->setFillColor('#ff0000');
+	
+	$draw->setStrokeColor ("none");
+
+	$draw->setTextAlignment (Imagick::ALIGN_LEFT);
 	
 	/* Dump the font metrics, autodetect multiline */
 	$metrics = $im->queryFontMetrics($draw, "X");
@@ -89,6 +93,13 @@ foreach (glob("fonts/*") as $fontfilename) {
 //var_dump($metrics);
 	
 	$metrics['sampledFontSize'] = $fontsize;
+	
+	
+	$metrics['textHeight'] = $metrics['textHeight'] + $metrics['descender'];
+	$metrics['baseline'] = $metrics['boundingBox']['y2'];
+	$metrics['textWidth'] = $metrics['textWidth'] + 2 * $metrics['boundingBox']['x1'];
+	$metrics['ascender'] = $metrics['textHeight'] + $metrics['descender'] ;
+	
 	
 	if ($printreport) {
 		print "<hr>";
